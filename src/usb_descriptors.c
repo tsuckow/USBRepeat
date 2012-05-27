@@ -183,12 +183,12 @@ ROM USB_DEVICE_DESCRIPTOR device_dsc=
 };
 
 /* Configuration 1 Descriptor */
-ROM BYTE configDescriptor1[0x63]={
+ROM BYTE configDescriptor1[0x5A]={
     /* Configuration Descriptor */
     0x09,//sizeof(USB_CFG_DSC),    // Size of this descriptor in bytes
     USB_DESCRIPTOR_CONFIGURATION,                // CONFIGURATION descriptor type
-    DESC_CONFIG_WORD(0x63),   // Total length of data for this cfg
-    3,                      // Number of interfaces in this cfg
+    DESC_CONFIG_WORD(0x5A),   // Total length of data for this cfg
+    2,                      // Number of interfaces in this cfg
     1,                      // Index value of this configuration
     1,                      // Configuration string index
     _DEFAULT | _SELF,               // Attributes, see usb_device.h
@@ -235,7 +235,7 @@ ROM BYTE configDescriptor1[0x63]={
     USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type
     CDC_COMM_INTF_ID,                      // Interface Number
     0,                      // Alternate Setting Number
-    1,                      // Number of endpoints in this intf
+    3,                      // Number of endpoints in this intf
     COMM_INTF,              // Class code
     ABSTRACT_CONTROL_MODEL, // Subclass code
     V25TER,                 // Protocol code
@@ -274,15 +274,15 @@ ROM BYTE configDescriptor1[0x63]={
     0x01,                       //Interval
 
     /* Interface Descriptor */
-    9,//sizeof(USB_INTF_DSC),   // Size of this descriptor in bytes
-    USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type
-    CDC_DATA_INTF_ID,                      // Interface Number
-    0,                      // Alternate Setting Number
-    2,                      // Number of endpoints in this intf
-    DATA_INTF,              // Class code
-    0,                      // Subclass code
-    NO_PROTOCOL,            // Protocol code
-    3,                      // Interface string index
+    //9,//sizeof(USB_INTF_DSC),   // Size of this descriptor in bytes
+    //USB_DESCRIPTOR_INTERFACE,               // INTERFACE descriptor type
+    //CDC_DATA_INTF_ID,                      // Interface Number
+    //0,                      // Alternate Setting Number
+    //2,                      // Number of endpoints in this intf
+    //DATA_INTF,              // Class code
+    //0,                      // Subclass code
+    //NO_PROTOCOL,            // Protocol code
+    //3,                      // Interface string index
 
     /* Endpoint Descriptor */
     //sizeof(USB_EP_DSC),DSC_EP,_EP03_OUT,_BULK,CDC_BULK_OUT_EP_SIZE,0x00,

@@ -83,7 +83,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define CDC_COMM_EP             1
 #define CDC_COMM_IN_EP_SIZE     10
 
-#define CDC_DATA_INTF_ID        0x01
+#define CDC_DATA_INTF_ID        0x00
 #define CDC_DATA_EP             2
 #define CDC_DATA_OUT_EP_SIZE    64
 #define CDC_DATA_IN_EP_SIZE     64
@@ -104,7 +104,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // HID Function Configuration
 
 #define USB_USE_HID
-#define HID_INTF_ID             0x02
+#define HID_INTF_ID             0x01
 #define HID_EP 			3
 #define HID_INT_IN_EP_SIZE      8
 #define HID_INT_OUT_EP_SIZE     1
