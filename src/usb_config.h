@@ -65,14 +65,14 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Peripheral Configuration
 
 #define MY_VID            0x04D8
-#define MY_PID            0x0055
+#define MY_PID            0x0098
 #define USB_INTERRUPT
 #define USB_PULLUP_OPTION      USB_PULLUP_ENABLE
 #define USB_TRANSCEIVER_OPTION USB_INTERNAL_TRANSCEIVER
 #define USB_EP0_BUFF_SIZE     8
-#define USB_MAX_NUM_INT       (0+1)
+#define USB_MAX_NUM_INT       (0+1+1)
 #define USB_MAX_EP_NUMBER 3
-#define USB_NUM_STRING_DESCRIPTORS 3
+#define USB_NUM_STRING_DESCRIPTORS 5
 
 //#define USB_DISABLE_SOF_HANDLER                 
 //#define USB_DISABLE_ERROR_HANDLER               
@@ -109,8 +109,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define HID_INT_IN_EP_SIZE      8
 #define HID_INT_OUT_EP_SIZE     1
 #define HID_NUM_OF_DSC          1
-#define HID_RPT01_SIZE          63
-#define HID_RPT02_SIZE          63
+#define HID_RPT01_SIZE          (63+50+4)
 
 //#define USER_SET_REPORT_HANDLER USBHIDCBSetReportHandler
 

@@ -13,6 +13,8 @@
 #pragma config UPLLEN   = ON   // USB PLL Enabled
 #pragma config UPLLIDIV = DIV_2// USB PLL Input Divider
 
+long configsize();
+
 void drawCursor( int x, int y )
 {
 	int z;
@@ -28,7 +30,9 @@ int main()
 	//Configure the system for 80MHz
 	long const FREQ = 80000000L;
 	SYSTEMConfig(FREQ, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE );
-	
+
+        long tmp = configsize();
+
 	initLCD(); //Shares LED and switch pins
         lcdClear();
 //	initTS();

@@ -232,6 +232,7 @@ void USBCBInitEP(void)
 {
     //enable the HID endpoint
     USBEnableEndpoint(HID_EP,USB_IN_ENABLED|USB_OUT_ENABLED|USB_HANDSHAKE_ENABLED|USB_DISALLOW_SETUP);
+    CDCInitEP();
 
     lastOUTTransmission = HIDRxPacket(HID_EP,(BYTE*)&hid_report_out,1);
 
