@@ -342,6 +342,7 @@ void USBCBSendResume(void)
  *
  * Note:            None
  *******************************************************************/
+void ProcessIO(void);
 BOOL USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, WORD size)
 {
     static int status = 1;
@@ -376,5 +377,22 @@ BOOL USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, WORD size)
         default:
             break;
     }
+
+    ProcessIO();
+    
     return TRUE;
+}
+
+void ProcessIO(void)
+{
+    if((USBDeviceState < CONFIGURED_STATE)||(USBSuspendControl==1)) return;
+
+    {
+        char buffer[64];
+        BYTE NumRead = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
+        if(NumRead > 0)
+        {
+            drawCursor( (buffer[0] & 0xF) * 4 , (buffer[0] >> 4) * 4 );
+        }
+    }
 }
