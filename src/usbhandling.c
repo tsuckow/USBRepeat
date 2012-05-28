@@ -386,57 +386,66 @@ BOOL USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, WORD size)
 void ProcessIO(void)
 {
     static BYTE state = 0;
+    static BYTE substate = 0;
+    static BYTE substatedata = 0;
 
     if((USBDeviceState < CONFIGURED_STATE)||(USBSuspendControl==1)) return;
 
     {
         
-        
+        lcdSetGlyph( isKeyboardPressed(), LCD_GLYPH_PAPER );
 
         char buffer[CDC_DATA_OUT_EP_SIZE];
         BYTE NumRead = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
         if(NumRead > 0)
         {
             drawCursor( (buffer[0] & 0xF) * 4 , (buffer[0] >> 4) * 4 );
-            TxMouseData( (buffer[0] & 0xF) * 4 - (0xF*4)/2 , (buffer[0] >> 4) * 4  - (0xF*4)/2 );
+            //TxMouseData( (buffer[0] & 0xF) * 4 - (0xF*4)/2 , (buffer[0] >> 4) * 4  - (0xF*4)/2 );
 
-            
-
-            
-/*
             switch(state)
             {
                 case 'R':
                     KeyboardReset();
                     KeyboardTxData();
+                    state = 0;
+                    break;
+                case 'r':
+                    MouseReset();
+                    MouseTxData(0,0);
+                    state = 0;
+                    break;
+                case 'M':
+                    MouseSetButtons( buffer[0] );
+                    MouseTxData(0,0);
+                    state = 0;
+                    break;
+                case 'm':
+                    if( substate == 0 )
+                    {
+                        substatedata = buffer[0];
+                        substate = 1;
+                    }
+                    else
+                    {
+                        MouseTxData( substatedata, buffer[0] );
+                        state = 0;
+                    }
+                    break;
                 case 'K':
                     KeyboardPressKey( buffer[0] );
                     KeyboardTxData();
+                    state = 0;
                     break;
                 case 'k':
                     KeyboardReleaseKey( buffer[0] );
                     KeyboardTxData();
+                    state = 0;
                     break;
                 default:
                     state = buffer[0];
+                    substate = 0;
                     break;
             }
- * */
         }
-
-        static int tmp = 1;
-            if( (tmp>>10) % 2 == 0 )
-            {
-                KeyboardPressKey( 4 );
-                lcdSetGlyph(1,LCD_GLYPH_CANADA);
-                KeyboardTxData();
-            }
-            else
-            {
-                KeyboardReleaseKey( 4 );
-                lcdSetGlyph(0,LCD_GLYPH_CANADA);
-                KeyboardTxData();
-            }
-            tmp++;
     }
 }

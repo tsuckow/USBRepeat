@@ -348,7 +348,7 @@ ROM struct{BYTE report[HID_RPT01_SIZE];}hid_rpt01={
     0x75, 0x08,                    //   REPORT_SIZE (8)
     0x81, 0x03,                    //   INPUT (Cnst,Var,Abs)
     0x95, 0x06,                    //   REPORT_COUNT (6)
-    0x75, 0x08a,                    //   REPORT_SIZE (8)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
 //    0x05, 0x08,                    //   USAGE_PAGE (LEDs)
 //    0x19, 0x01,                    //   USAGE_MINIMUM (Num Lock)
 //    0x29, 0x05,                    //   USAGE_MAXIMUM (Kana)

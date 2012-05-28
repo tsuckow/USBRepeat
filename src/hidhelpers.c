@@ -23,18 +23,22 @@ BYTE const KeyboardModRightGui  = 1 << 7;
 #define KeyboardKCNone          0x00
 #define KeyboardKCErrorRollOver 0x01
 
-void TxMouseData(CHAR xaxis, CHAR yaxis) {
+BYTE mouseButtons = MouseButtonNone;
 
-    BYTE buttons = MouseButtonNone;
+void MouseReset() {
+    mouseButtons = MouseButtonNone;
+}
 
-    //CHAR xaxis = 1;
-    //CHAR yaxis = 1;
+void MouseSetButtons( BYTE buttons ) {
+     mouseButtons = buttons;
+}
 
+void MouseTxData(CHAR xaxis, CHAR yaxis) {
     static BYTE hid_report[5] = {HID_MOUSE_ID,MouseButtonNone,0,0,0};
 
     if( !HIDTxHandleBusy(lastINTransmission) )
     {
-        hid_report[1] = buttons;
+        hid_report[1] = mouseButtons;
         hid_report[2] = xaxis;
         hid_report[3] = yaxis;
         hid_report[4] = 0; //Mouse Wheel
@@ -47,6 +51,20 @@ void TxMouseData(CHAR xaxis, CHAR yaxis) {
 
 BYTE keyboardModifiers = KeyboardModNone;
 BYTE keyboardkc[6] = {KeyboardKCNone,KeyboardKCNone,KeyboardKCNone,KeyboardKCNone,KeyboardKCNone,KeyboardKCNone};
+
+int isKeyboardPressed() {
+    if( keyboardModifiers == KeyboardModNone )
+    {
+        int i;
+        for(i = 0; i < 6; ++i)
+            if( keyboardkc[i] != KeyboardKCNone )
+            {
+                return 1;
+            }
+        return 0;
+    }
+    return 1;
+}
 
 void KeyboardReset() {
     keyboardModifiers = KeyboardModNone;
