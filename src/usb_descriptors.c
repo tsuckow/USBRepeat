@@ -335,7 +335,7 @@ ROM struct{BYTE report[HID_RPT01_SIZE];}hid_rpt01={
 {   0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
     0x09, 0x06,                    // USAGE (Keyboard)
     0xa1, 0x01,                    // COLLECTION (Application)
-    0x85, 0x01,                    //   REPORT_ID (1)
+    0x85, HID_KEYBOARD_ID,                    //   REPORT_ID (1)
     0x05, 0x07,                    //   USAGE_PAGE (Keyboard)
     0x19, 0xe0,                    //   USAGE_MINIMUM (Keyboard LeftControl)
     0x29, 0xe7,                    //   USAGE_MAXIMUM (Keyboard Right GUI)
@@ -369,7 +369,7 @@ ROM struct{BYTE report[HID_RPT01_SIZE];}hid_rpt01={
     0x05, 0x01, /* Usage Page (Generic Desktop)             */
     0x09, 0x02, /* Usage (Mouse)                            */
     0xA1, 0x01, /* Collection (Application)                 */
-    0x85, 0x02,                    //   REPORT_ID (2)
+    0x85, HID_MOUSE_ID,                    //   REPORT_ID (2)
     0x09, 0x01, /*  Usage (Pointer)                         */
     0xA1, 0x00, /*  Collection (Physical)                   */
     0x05, 0x09, /*      Usage Page (Buttons)                */
@@ -386,10 +386,11 @@ ROM struct{BYTE report[HID_RPT01_SIZE];}hid_rpt01={
     0x05, 0x01, /*      Usage Page (Generic Desktop)        */
     0x09, 0x30, /*      Usage (X)                           */
     0x09, 0x31, /*      Usage (Y)                           */
+    0x09, 0x38, /*      Usage (Wheel)                       */
     0x15, 0x81, /*      Logical Minimum (-127)              */
     0x25, 0x7F, /*      Logical Maximum (127)               */
     0x75, 0x08, /*      Report Size (8)                     */
-    0x95, 0x02, /*      Report Count (2)                    */
+    0x95, 0x03, /*      Report Count (3)                    */
     0x81, 0x06, /*      Input (Data, Variable, Relative)    */
     0xC0, 0xC0}  // End Collection
 };

@@ -109,7 +109,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define HID_INT_IN_EP_SIZE      8
 #define HID_INT_OUT_EP_SIZE     1
 #define HID_NUM_OF_DSC          1
-#define HID_RPT01_SIZE          (63+50+4)
+#define HID_RPT01_SIZE          (63+52+4)
+#define HID_KEYBOARD_ID         1
+#define HID_MOUSE_ID            2
 
 //#define USER_SET_REPORT_HANDLER USBHIDCBSetReportHandler
 

@@ -3,8 +3,8 @@
 #include "USB/usb_function_cdc.h"
 #include "lcd.h"
 
-USB_HANDLE lastINTransmission;
-USB_HANDLE lastOUTTransmission;
+USB_HANDLE lastINTransmission = 0;
+USB_HANDLE lastOUTTransmission = 0;
 
 /******************************************************************************
  * Function:        void USBCBSuspend(void)
@@ -385,14 +385,56 @@ BOOL USER_USB_CALLBACK_EVENT_HANDLER(USB_EVENT event, void *pdata, WORD size)
 
 void ProcessIO(void)
 {
+    static BYTE state = 0;
+
     if((USBDeviceState < CONFIGURED_STATE)||(USBSuspendControl==1)) return;
 
     {
-        char buffer[64];
+        
+        static int tmp = 1;
+            if( (tmp>>10) % 2 == 0 )
+            {
+                KeyboardPressKey( 4 );
+                lcdSetGlyph(1,LCD_GLYPH_CANADA);
+                //KeyboardTxData();
+            }
+            else
+            {
+                KeyboardReleaseKey( 4 );
+                lcdSetGlyph(0,LCD_GLYPH_CANADA);
+                //KeyboardTxData();
+            }
+            tmp++;
+
+        char buffer[1];
         BYTE NumRead = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
         if(NumRead > 0)
         {
             drawCursor( (buffer[0] & 0xF) * 4 , (buffer[0] >> 4) * 4 );
+            TxMouseData( (buffer[0] & 0xF) * 4 - (0xF*4)/2 , (buffer[0] >> 4) * 4  - (0xF*4)/2 );
+
+            
+
+            
+/*
+            switch(state)
+            {
+                case 'R':
+                    KeyboardReset();
+                    KeyboardTxData();
+                case 'K':
+                    KeyboardPressKey( buffer[0] );
+                    KeyboardTxData();
+                    break;
+                case 'k':
+                    KeyboardReleaseKey( buffer[0] );
+                    KeyboardTxData();
+                    break;
+                default:
+                    state = buffer[0];
+                    break;
+            }
+ * */
         }
     }
 }

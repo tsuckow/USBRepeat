@@ -26,6 +26,7 @@
         <itemPath>C:/Users/Deathbob/MPLABXProjects/USBRepeat.X/src/usbhandling.c</itemPath>
         <itemPath>src/usb_config.c</itemPath>
         <itemPath>src/usb_descriptors.c</itemPath>
+        <itemPath>src/hidhelpers.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="USB Stuff" projectFiles="true">
         <itemPath>C:/MicrochipAppLibs/Microchip/USB/usb_device.c</itemPath>
