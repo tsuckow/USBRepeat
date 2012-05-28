@@ -391,22 +391,9 @@ void ProcessIO(void)
 
     {
         
-        static int tmp = 1;
-            if( (tmp>>10) % 2 == 0 )
-            {
-                KeyboardPressKey( 4 );
-                lcdSetGlyph(1,LCD_GLYPH_CANADA);
-                //KeyboardTxData();
-            }
-            else
-            {
-                KeyboardReleaseKey( 4 );
-                lcdSetGlyph(0,LCD_GLYPH_CANADA);
-                //KeyboardTxData();
-            }
-            tmp++;
+        
 
-        char buffer[1];
+        char buffer[CDC_DATA_OUT_EP_SIZE];
         BYTE NumRead = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
         if(NumRead > 0)
         {
@@ -436,5 +423,20 @@ void ProcessIO(void)
             }
  * */
         }
+
+        static int tmp = 1;
+            if( (tmp>>10) % 2 == 0 )
+            {
+                KeyboardPressKey( 4 );
+                lcdSetGlyph(1,LCD_GLYPH_CANADA);
+                KeyboardTxData();
+            }
+            else
+            {
+                KeyboardReleaseKey( 4 );
+                lcdSetGlyph(0,LCD_GLYPH_CANADA);
+                KeyboardTxData();
+            }
+            tmp++;
     }
 }

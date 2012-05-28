@@ -106,10 +106,10 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define USB_USE_HID
 #define HID_INTF_ID             0x01
 #define HID_EP 			3
-#define HID_INT_IN_EP_SIZE      8
+#define HID_INT_IN_EP_SIZE      9
 #define HID_INT_OUT_EP_SIZE     1
 #define HID_NUM_OF_DSC          1
-#define HID_RPT01_SIZE          (63+52+4)
+#define HID_RPT01_SIZE          ((63-18)+52+4)
 #define HID_KEYBOARD_ID         1
 #define HID_MOUSE_ID            2
 

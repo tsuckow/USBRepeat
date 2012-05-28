@@ -115,6 +115,6 @@ void KeyboardTxData() {
         for(i = 0; i < 6; ++i)
             hid_report[3 + i] = keyboardkc[i];
 
-        lastINTransmission = HIDTxPacket(HID_EP, (BYTE*)hid_report, 0x09);
+        lastINTransmission = HIDTxPacket(HID_EP, (BYTE*)hid_report, 9);
     }
 }
