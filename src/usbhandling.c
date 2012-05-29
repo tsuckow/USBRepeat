@@ -399,6 +399,10 @@ void ProcessIO(void)
         BYTE NumRead = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
         if(NumRead > 0)
         {
+            if(NumRead > 1)
+            {
+                lcdSetGlyph( 1, LCD_GLYPH_BELL );
+            }
             drawCursor( (buffer[0] & 0xF) * 4 , (buffer[0] >> 4) * 4 );
             //TxMouseData( (buffer[0] & 0xF) * 4 - (0xF*4)/2 , (buffer[0] >> 4) * 4  - (0xF*4)/2 );
 

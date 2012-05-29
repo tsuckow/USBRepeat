@@ -1,0 +1,6 @@
+R - Keyboard Reset
+r - Mouse Reset
+K? - Press Key
+k? - Release Key
+M? - Set Mouse Buttons
+m?? - Move x,y (signed, relative)

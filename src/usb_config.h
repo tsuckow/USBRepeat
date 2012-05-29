@@ -85,7 +85,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #define CDC_DATA_INTF_ID        0x00
 #define CDC_DATA_EP             2
-#define CDC_DATA_OUT_EP_SIZE    64
+#define CDC_DATA_OUT_EP_SIZE    1
 #define CDC_DATA_IN_EP_SIZE     64
 
 //#define USB_CDC_SUPPORT_DSR_REPORTING   //Signal from UART peripheral device, to CDC/USB host.  Indicates UART peripheral is ready to receive data and/or commands.
